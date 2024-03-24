@@ -48,10 +48,10 @@ function AddToCart({ product, cart, setCart }) {
           value={quantity}
           onChange={handleQuantityChange}
         />
-      </div>
       <Button variant="primary" onClick={addToCart}>
         Add to Cart
       </Button>
+      </div>
     </div>
   );
 }
