@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react"
 import { Card, CardText, Col, Row, Button } from "react-bootstrap"
 
@@ -6,15 +7,17 @@ function GetListCart() {
   const [totalCartPrice, setTotalCartPrice] = useState(0);
 
   useEffect(() => {
-    const getCart = () => {
+    const getCart = async () => {
       const existingCart = localStorage.getItem("cart")
+      const response = await axios.get('/cart')
+      setCart(response.data)
 
       if (existingCart) {
-        const cartItems = JSON.parse(existingCart)
-        const total = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
-        setTotalCartPrice(total.toFixed(2));
-        setCart(cartItems)
-      }
+    const cartItems = JSON.parse(existingCart) || []
+    const total = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    setTotalCartPrice(total.toFixed(2))
+    setCart(cartItems)
+  }
     };
     getCart()
   }, [])

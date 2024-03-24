@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
@@ -11,11 +12,28 @@ function AddToCart({ product, cart, setCart }) {
     }
   };
 
-  const addToCart = () => {
-    const productToAdd = { ...product, qty: quantity }; // Include quantity in product
+  const addToCart = async () => {
+    const productToAdd = { ...product, qty: quantity };
     
     const existingCart = localStorage.getItem("cart");
     let cartItems = [];
+
+    try {
+      const response = await axios.post('/cart', {
+        body: JSON.stringify(productToAdd),
+      });
+  
+      if (response.ok) {
+        alert(`"${product.title}" successfully added to cart!`);
+        // Update cart in the component's state
+        const updatedCart = await response.json();
+        setCart(updatedCart);
+      } else {
+        // Handle potential errors
+      }
+    } catch (error) {
+      // Handle network or server errors
+    }
 
     if (existingCart) {
       cartItems = JSON.parse(existingCart);
