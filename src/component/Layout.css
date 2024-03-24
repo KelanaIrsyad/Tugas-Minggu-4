@@ -1,0 +1,13 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensure it spans the entire width */
+    z-index: 10; /* Set a higher z-index to stay above content */
+    background-color: #fff; /* Set background color (optional) */
+    padding: 10px 20px; /* Adjust padding (optional) */
+    max-width: none; /* Disable any maximum width limitations */
+    padding: 10px 20px; /* Adjust padding if needed */
+
+  }
+  
