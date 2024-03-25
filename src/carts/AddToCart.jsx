@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 function AddToCart({ product, cart, setCart }) {
-  const [quantity, setQuantity] = useState(1); // State for product quantity
+  const [quantity, setQuantity] = useState(1);
 
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value, 10);
